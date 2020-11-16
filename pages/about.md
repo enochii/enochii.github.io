@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Abount Enochii
+title: Abount Me
 ---
 
 ## Contact me
