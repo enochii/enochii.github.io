@@ -52,7 +52,7 @@ ResultType interpret(Expr expr) {
 
 ### How
 
-首先，要按列切分，我们要有一个表达单一操作的一个实体。它就是 Vistor ，我们可以定义这么一个接口：
+首先，要按列切分，我们要有一个表达单一操作的一个实体。它就是 Vistor ，我们可以定义这么一个接口。使用泛型的原因是针对不同的操作，可能调用方需要不同的结果，这一点我们留给 Visitor 的实现者去决定。
 
 ```Java
 // R means result type
