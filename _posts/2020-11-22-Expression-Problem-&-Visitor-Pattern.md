@@ -52,7 +52,7 @@ ResultType interpret(Expr expr) {
 
 ### How
 
-首先，要按列切分，我们要有一个表达单一操作的一个实体。它就是 Vistor ，我们可以定义这么一个接口。使用泛型的原因是针对不同的操作，可能调用方需要不同的结果，这一点我们留给 Visitor 的实现者去决定。
+首先，要按列切分，我们要有一个表达单一操作的一个实体。它就是 Vistor ，我们可以定义这么一个接口：
 
 ```Java
 // R means result type
@@ -62,6 +62,8 @@ interface Vistor<R> {
     R visitLiteral(Literal l);
 }
 ```
+
+使用泛型的原因是针对不同的操作，可能调用方需要不同的结果，这一点我们留给 Visitor 的实现者去决定。
 
 在 Expression 也就是表达式这一头，我们会加入以下改动：
 
@@ -88,7 +90,7 @@ class Unary {
 ... 
 ```
 
-这里可以看到，表达式是不 care Visitor 的类型的，所以后续加入新的 Visitor 不会对这里产生影响。
+这里可以看到，表达式是不 care Visitor 的类型的，所以后续**加入新的 Visitor 不会对这里产生影响**。
 
 接着，如果加入一个新操作，我们需要实现一个新的 Visitor ：
 
@@ -131,9 +133,9 @@ expr.accept(vistor) -> visitor.visitExpr(expr)
 
 ## Summary
 
-本文简单介绍了 Expression Problem 和 Visitor Pattern，并指出如何根据需求去选择切分方式。有兴趣的话可以去看看[原文链接]( http://www.craftinginterpreters.com/representing-code.html#the-expression-problem )，本质上本文算是一个拙劣的翻译。
+本文简单介绍了 Expression Problem 和 Visitor Pattern，并指出如何根据需求去选择切分方式。有兴趣的话可以去看看[这篇文章]( http://www.craftinginterpreters.com/representing-code.html#the-expression-problem )，某种程度上本文算是一个拙劣的翻译（当然加了不少自己的理解）。
 
-最后提一嘴，这里用拙劣英文做标题主要是为了简洁和不别扭...... 还有示例代码算是类 Java 的伪码，应该无法通过编译~
+最后提一嘴，这里用英文做标题主要是为了简洁和不别扭...... 还有示例代码算是类 Java 的伪码，应该无法通过编译~
 
 ## Reference
 
