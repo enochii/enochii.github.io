@@ -140,7 +140,9 @@ var a = "global a";
 }
 ```
 
-因为我们是在函数调用时获取 `interpreter.env_` 的引用，所以 `env_` 的变化（比如进入新 block 指向新的 Environment）对于我们而言是可见的。
+这里我们第二次调用 `f()` 得到的输出是 "local a-2" ！
+
+因为我们是在**函数调用时**获取 `interpreter.env_` 的引用，所以 `env_` 的变化（比如进入新 block 指向新的 Environment）对于我们而言是可见的。
 
 其实从 `global_` 到 `env_` ，我们得到了两种 scope ，一种是没有闭包的 static scope ，另一种是 dynamic scope 。
 
