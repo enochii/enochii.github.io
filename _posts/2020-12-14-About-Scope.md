@@ -71,7 +71,7 @@ public class LoxFunction implements LoxCallable {
     @Override
     public Object call(Interpreter interpreter, List<Object> args) {
         // give function body a enclosing env
-        Environment funcEnv = new Environment(interpreter.env_);
+        Environment funcEnv = new Environment(interpreter.globals_);
 
         for(int i=0; i<args.size(); i++) {
             funcEnv.define(
@@ -103,7 +103,17 @@ var a = "global a";
 
 那么如果我们想支持闭包或者说嵌套函数呢？也就是说，我们希望两个都打印 "local a" ！
 
-那是不是我们改成 `interpreter.env_` 即当前环境就万事顺心了呢？好像是的，我们会得到下列输出：
+那是不是我们改成 `interpreter.env_` 即当前环境就万事顺心了呢？也就是：
+
+```java
+public Object call(Interpreter interpreter, List<Object> args) {
+        // give function body a enclosing env
+        Environment funcEnv = new Environment(interpreter.env_);
+    	...
+}
+```
+
+好像是的，我们会得到下列输出：
 
 ```shell
 local a
