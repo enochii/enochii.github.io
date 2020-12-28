@@ -4,13 +4,13 @@ title: 动态类型语言和静态作用域
 categories: [Compiler]
 ---
 
-又做了一回标题党...... 这篇文章基于[这个 tutorial]( http://www.craftinginterpreters.com/classes.html#properties-on-instances ) ，蛮不错的一本书，手把手教你写一个静态作用域的动态类型语言。本文会更像一篇笔记，简单聊聊在实现这个玩具语言时，关于类相关作用域的一点思考。
+又做了一回标题党...... 这篇文章基于[这个 tutorial]( http://www.craftinginterpreters.com/classes.html#properties-on-instances ) ，蛮不错的一本书，手把手教你写一个静态作用域的动态类型语言解释器。本文会更像一篇笔记，简单聊聊在实现这个玩具语言时，关于类相关作用域的一点思考。
 
 ## field vs. variable
 
 对于 class instance 的 field 获取，tutorial 在实现上，是和一般变量的获取有差异的。
 
-前者通过在每个 instance 安插一个 `fields` （其实是一个 map），然后捕获 get/set 事件，对 map 进行读取和修改；后者就是通过嵌套的 scope ，通过 `Environment` 去读写变量。
+前者（指 *读写 field*）通过在每个 instance 安插一个 `fields` （其实是一个 map），然后捕获 get/set 事件，对 map 进行读取和修改；后者（指 *读写 variable*）就是通过嵌套的 scope ，通过 `Environment` 去读写变量。
 
 对于 `this` ，tutorial 则是在 `instance.method()` 的 `instance.method` 返回前 bind 一个 this 变量，这就变成了 *bound method*。这样一来类内的方法就可以访问 `this` 变量，也可以通过这个句柄来访问属于这个类实例的 field 和 method （指 `this.field` / `this.method` ）。
 
@@ -61,4 +61,4 @@ a.str = "instance field";
 
 以前对于 Python 为啥一定要 `self.*` 有点不解，现在想想也是和这个稍微有点关系。虽然 Python 是万恶的 dynamic scope（噫！
 
-形如 C++ 这样更*静态*的语言（感觉这里说静态类型语言又不是很合适），类可以拥有的 field 在编译时已经定了下来。这意味着每个类实例的所有 field 在运行前已经确定了类型，所以我们认为类相关的 scope 是非常 static 的。因此我们在运行前就可以确定词法地址了，故我们没必要用 `this.field` 这样丑陋的写法。
+形如 C++/Java 这样更*静态*的语言（感觉这里说静态类型语言又不是很合适），类可以拥有的 field 在编译时已经定了下来。这意味着每个类实例的所有 field 在运行前已经确定了类型，所以我们认为类相关的 scope 是非常 static 的。因此我们在运行前就可以确定词法地址了，故我们没必要用 `this->field` or `this.field` 这样丑陋的写法。
