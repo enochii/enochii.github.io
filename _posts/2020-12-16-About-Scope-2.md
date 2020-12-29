@@ -34,7 +34,7 @@ var a = "global";
 
 第二次 `f()` 调用对名字 `a` 的解析，在经过 Block Environment 时就已经被截获了，这就是万恶之源。
 
-问题出在我们希望函数定义绑定的是一个定义点环境的 **snapshot**（快照），而我们的 Environment 代表的是一个 scope ，在运行时一直会被篡改。
+问题出在我们希望函数定义绑定的是一个定义点环境的 **snapshot**（快照），而我们的 Environment 代表的是一个**运行时的 scope**，在新定义一个变量后就会被篡改。也就是说，对 `f()` 的多次调用看到的 Environment 可能是不一样的。
 
 ## 正确的思路
 
@@ -55,9 +55,9 @@ class Environment {
 }
 ```
 
-这种做法一个 Environment 实例会对应一个 scope （或者一对大括号），在对应大括号新发生一个定义后，这个 Environment 的 `bindings` 就会发生改变。
+这种做法一个 Environment 实例会对应一个 scope （或者一对大括号），在对应大括号内新发生一个定义后，这个 Environment 的 `bindings` 就会发生改变。
 
-思路一是把这种粗粒度的 Environment 拆分成多个小的环境，据此我们可以有：
+思路一是把这种粗粒度的 Environment 拆分成多个小的环境，也就是我们说的一个定义会创建一个 Environment ，据此我们可以有：
 
 ```java
 class Environment {
@@ -72,11 +72,11 @@ class Environment {
 ```java
 {
     // [1]
-    var a;
+    var a = "a";
     // [2]
-    var b;
+    var b = "b";
     // [3]
-    var c;
+    var c = "c";
     // [4]
 }
 ```
@@ -85,7 +85,9 @@ class Environment {
 
 <img src="3.jpg" alt="image" style="zoom:50%;"/>
 
-这就完成了我们想要的『快照』。如果你写过 Lisp 或它的方言，你应该会发现它的链表表达这个逻辑很方便。在定义一个新名字时，我们可以：
+简单来说，[1] 处看不到任何 binding，[2] 可以看到 `a` ，[3] 可以看到 `a` `b`，[4] 可以看到 `a` `b` `c`。
+
+这就完成了我们想要的『快照』。如果你写过 Lisp 或它的方言，你应该会发现它的链表表达这个逻辑简直是浑然天成。在定义一个新名字时，我们可以：
 
 ```scheme
 (define new-env (cons <new-binding> old-env)
@@ -95,9 +97,9 @@ class Environment {
 
 ### 思路二：词法地址
 
-思路二是使用词法地址，我们很容易有这样的想法：既然作用域是静态的，那么为什么不在运行前就把 use-define （指名字的使用和定义）确定下来呢？
+思路二是使用词法地址，我们很容易有这样的想法：既然作用域是静态的，那么为什么不在运行前就把 use-definition relation（指名字的使用和定义）确定下来呢？即对于程序中出现的每一个对变量的使用，我们都可以找到声明（定义）它的 scope。
 
-据此，我们可以在运行前，将名字的使用 resolve 到某一个特定的 Environment 。这样一来在运行时直接到这个 Environment 搜索即可。
+据此，我们可以在运行前，将名字的使用 resolve 到某一个特定的 Environment 。这样一来在运行时直接到这个 Environment 搜索该名字即可。
 
 词法地址除了解决 scope 的问题，还优化了名字的查找。在名字查找时，我们不用沿着 environment chain 从里到外屁颠跑一整躺了。
 
