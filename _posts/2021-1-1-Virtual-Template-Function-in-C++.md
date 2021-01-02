@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Virtual Template Function in C++
+title: “Virtual Template Function” in C++
 categories: [Design, C++]
 ---
 
@@ -10,13 +10,13 @@ categories: [Design, C++]
 
 ## Requirement
 
-问题是这样的，在写一个支持简单运算的 Parser ，所以需要各种表达式。比如说我们有 `Binary` （二元表达式）、 `Unary` （单元表达式）和 Literal （数字常量），一般而言我们会抽出一个基类 `Expr` ，所以我们可以有如下的结构：
+问题是这样的，在写一个支持简单运算的 *Parser* ，所以需要各种表达式。比如说我们有 `Binary` （二元表达式）、 `Unary` （单元表达式）和 `Literal` （数字常量），一般而言我们会抽出一个基类 `Expr` ，所以我们可以有如下的结构：
 
 ![expr](expr.jpg)
 
-其实表达式就是我们平时说的 AST 。接着我们需要为每种表达式提供某种操作，比如 evaluate （求值），pretty-printing （按某种格式打印 AST）。[这篇文章]( https://enochii.github.io/posts/2020/11/22/Expression-Problem-&-Visitor-Pattern.html )提到有两种手法来提供操作，一种是 OO 的做法，就是在继承体系中给每一个节点都添加一个方法（比如 `eval()`），另一种是用 Visitor Pattern （访问者模式），本文会采用后者。
+其实表达式就是我们平时说的 *AST* 。接着我们需要为每种表达式提供某种操作，比如 *evaluate* （求值），*pretty-printing* （按某种格式打印 *AST*）。[这篇文章]( https://enochii.github.io/posts/2020/11/22/Expression-Problem-&-Visitor-Pattern.html )提到有两种手法来提供操作，一种是 *OO* 的做法，就是在继承体系中给每一个节点都添加一个方法（比如 `eval()`），另一种是用 *Visitor Pattern*（访问者模式），本文会采用后者。
 
-一般而言，我们的 Visitor 是参数化的，即
+一般而言，我们的 `Visitor` 是参数化的，即
 
 ```c++
 template<class T>
@@ -84,7 +84,11 @@ struct Unary {
 }
 ```
 
-但上面的代码是编译不过的，因为 C++不支持 templated virtual function （虚模板函数），[这个 SO 问题]( https://stackoverflow.com/questions/2354210/can-a-class-member-function-template-be-virtual )已经做了讨论了。简单来说，virtual function 是偏动态的概念，template 是编译器按需进行实例化；具体到实现上，一般 C++ 是通过 *vtble* 去实现 dynamic dispatch ， *vtable* 是固定大小的，然而一个类的 templated virtual function 个数是不定的，造成了冲突。然而理论上来说，我觉得做一些效率或实现难度的折衷应该总是可以实现的。
+但上面的代码是编译不过的，因为 C++不支持 *templated virtual function* （虚模板函数），[这个 SO 问题]( https://stackoverflow.com/questions/2354210/can-a-class-member-function-template-be-virtual )已经做了讨论，可供参考。我觉得考虑一些实现细节可能会更好理解，**一般** C++ 是通过 *vtble* 去实现 *virtual function* 和对应的 *dynamic dispatch* ， *vtable* 是固定大小的，然而一个类的 *templated virtual function* 个数是不定的（你给不同的参数，编译器就帮你实例化出来具化的函数），这造成了冲突。
+
+然而理论上来说，我觉得做一些效率或实现难度的折衷应该总是可以实现的。毕竟在编译成可执行文件之前，我们应该总是可以知道我们需要为一个『虚模板函数』做多少次实例化，所以 *vtable* 的大小便可以固定下来（如果这是唯一的原因......）。
+
+> 可以参考[这个回答](https://stackoverflow.com/a/27709454/10701129) 。
 
 此路不通，故事结束？据我这两天的探索总结大约是有两种 workaround 。
 
@@ -125,7 +129,7 @@ CRTP 其实大有用处，可参考
 -  https://zhuanlan.zhihu.com/p/54945314 
 -  https://www.cnblogs.com/yang-wen/p/8573269.html 
 
-回到我们的代码，其实新的问题是，现在 `Expr` 是一个带模板参数的模板类了，并且 `Binary` 和 `Unary` 在继承体系上不再是兄弟节点。这个问题会造成，所有需要我们原始需要 `Expr` 抽象的地方都需要变成 `Expr<T>` 。虽然丑陋，但我猜应该总是可以滴。
+回到我们的代码，其实新的问题是，现在 `Expr` 是一个带模板参数的模板类了，并且 `Binary` 和 `Unary` 在继承体系上不再是兄弟节点（`Binary` 的爸爸是 `Expr<Binary>`，`Unary` 的爸爸是 `Expr<Unary>`）。这个问题会造成，所有原来需要 `Expr` 抽象的地方都需要变成 `Expr<T>` 。虽然丑陋，但我猜应该总是可以滴。
 
 ## Option 2: Separate Visitor Interface
 
@@ -147,7 +151,7 @@ template<typename T> class BaseVisitor : public BaseVisitorInternal {
 };
 ```
 
-注意 `visit(BaseVisited*)` 方法的返回值都成了 *void* ...... 因为我们的目的就是去除模板参数 *T* （这样一来 `accept()` 就可以是一个非模板函数了）。emmm ，那如果我想要取得这个结果呢...... 这里可以给出丑陋的 demo 代码（和上面的例子不一样，可以参考逻辑）。
+注意 `visit(BaseVisited*)` 方法的返回值都成了 *void* ...... 因为我们的目的就是去除模板参数 *T* （这样一来 `accept()` 就可以是一个非模板函数了）。emmm ，那如果我想要取得这个结果呢...... 这里可以给出丑陋的 demo 代码（和上面的 *AST* 例子不一样，可以参考逻辑）。
 
 ```c++
 #include <string>
@@ -233,7 +237,7 @@ int main()
 }
 ```
 
-其实就是多提供了一个 `Visitor.get()` 方法，然后用一个 *data member* `res_` 去缓存中间结果。另外，为了区分一个 `accept()` 或者说 `visit*()` 方法是由用户直接还是间接调用，我们多了一个默认参数 `bool first` ，这个看代码应该很好理解。
+其实就是多提供了一个 `Visitor.getRes()` 方法，然后用一个 *data member* `res_` 去缓存中间结果。另外，为了区分一个 `accept()` 或者说 `visit*()` 方法是由用户直接还是间接调用，我们多了一个默认参数 `bool first` ，这个看代码应该很好理解。
 
 这种 workaround 除了不优雅之外，另一个问题是 `res_` 是被多次调用共享的，所以在一些情况下比如并发就有问题了。然而至少可以勉强解决我的问题 （：
 
