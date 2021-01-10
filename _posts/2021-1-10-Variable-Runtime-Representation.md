@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: Variable, Runtime stack and VM
+title: Variable Runtime Representation By VM Stack
 categories: [Compiler, VM]
 ---
 
