@@ -8,6 +8,18 @@ categories: [Design, C++]
 >
 > 限于个人水平及 C++ 之博大精深，若本文存在错误或疏漏恳请读者指出，感谢~
 
+> Update: 经新室友指点，知道了该怎么解决，恕余愚钝-- 上回看到 `Boost.Any` 就没继续深究下去了......
+>
+> 文中提到 Java 和 CPP 的泛型不同，所以可以在代码层面或者说库层面来*模拟 Java 的类型擦除*。比如 `Boost.Any` ，有趣的地方其实在[怎么从 `Any` 转回来]( https://www.boost.org/doc/libs/1_61_0/doc/html/boost/any_cast_idp6057536.html)，`Any` 提供了 `any_cast` 。
+>
+> > If passed a pointer, it returns a similarly qualified pointer to the value content if successful, otherwise null is returned. If T is ValueType, it returns a copy of the held value, otherwise, if T is a reference to (possibly const qualified) ValueType, it returns a reference to the held value.
+>
+> 也就是对于引用、指针和值会有不同的行为，简单来说就是有无拷贝，这个应该主要和生命周期有关。
+>
+> 在 visitor pattern 这个上下文中，如果我们自己做一个 `Any`，`any_cast` 自然也可以在各自的 visitor 中做。 Boost 这样把所有脏的转换逻辑写在 `any_cast` 这个点倒感觉还挺优雅。
+>
+> 我好菜啊~!~
+
 ## Requirement
 
 问题是这样的，在写一个支持简单运算的 *Parser* ，所以需要各种表达式。比如说我们有 `Binary` （二元表达式）、 `Unary` （单元表达式）和 `Literal` （数字常量），一般而言我们会抽出一个基类 `Expr` ，所以我们可以有如下的结构：
