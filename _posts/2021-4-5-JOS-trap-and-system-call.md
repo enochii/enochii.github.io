@@ -33,7 +33,7 @@ Exception 则一般是在程序执行过程中被触发，比如当执行指令�
 > - [1]
 > - [2] 5.3 Sources of Interrupts
 
-综上，一般异常是*同步*的，一般是程序（不自觉或自觉地）主动触发中断机制，而由硬件触发的中断是*异步*的。
+综上，一般异常是*同步*的，一般是程序（不自觉或自觉地）主动触发中断机制；而由硬件触发的中断是*异步*的，比如一个时间中断突然把一个程序的执行流打断。
 
 ### 中断向量表
 
@@ -45,7 +45,7 @@ IDT 有 256 项，0-31 被 Intel 保留，比如 0 是 divide by zero ；32-255 
 >
 >Vectors in the range 32 to 255 are designated as user-defined interrupts and are not reserved by the Intel 64 and IA-32 architecture. These interrupts are generally assigned to external I/O devices to enable those devices to send interrupts to the processor through one of the external hardware interrupt mechanisms (see Section 5.3, “Sources of Interrupts”). 
 
-0-32 除去一些保留的以及 NMI ，大部分都是异常，可查看 [2]  Table 5-1. Protected-Mode Exceptions and Interrupts 。
+0-31 除去一些保留的以及 NMI ，大部分都是异常，可查看 [2]  Table 5-1. Protected-Mode Exceptions and Interrupts 。
 
 JOS 使用了 48(0x30) 作为系统调用的中断向量，使得我们可以像处理异常、中断一样处理系统调用。
 
