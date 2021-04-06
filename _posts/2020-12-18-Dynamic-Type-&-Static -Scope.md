@@ -59,6 +59,6 @@ a.str = "instance field";
 
 ## 其他语言
 
-以前对于 Python 为啥一定要 `self.*` 有点不解，现在想想也是和这个稍微有点关系。虽然 Python 是万恶的 dynamic scope（噫！
+以前对于 Python 为啥一定要 `self.*` 有点不解，现在想想也是和这个稍微有点关系，因为 Python 也同样面临静态（lexical scope）和动态（class field）的夹击。
 
 形如 C++/Java 这样更*静态*的语言（感觉这里说静态类型语言又不是很合适），类可以拥有的 field 在编译时已经定了下来。这意味着每个类实例的所有 field 在运行前已经确定了类型，所以我们认为类相关的 scope 是非常 static 的。因此我们在运行前就可以确定词法地址了，故我们没必要用 `this->field` or `this.field` 这样丑陋的写法。
