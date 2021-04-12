@@ -1,6 +1,6 @@
 ---
 layout: mypost
-title: "Homework: xv6-locking"
+title: "Homework: Threads and Locking"
 categories: [6.828]
 ---
 
