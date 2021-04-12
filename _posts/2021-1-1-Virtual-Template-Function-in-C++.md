@@ -8,18 +8,6 @@ categories: [Design, C++]
 >
 > 限于个人水平及 C++ 之博大精深，若本文存在错误或疏漏恳请读者指出，感谢~
 
-> Update: 经新室友指点，知道了该怎么解决，恕余愚钝-- 上回看到 `Boost.Any` 就没继续深究下去了......
->
-> 文中提到 Java 和 CPP 的泛型不同，所以可以在代码层面或者说库层面来*模拟 Java 的类型擦除*。比如 `Boost.Any` ，有趣的地方其实在[怎么从 `Any` 转回来]( https://www.boost.org/doc/libs/1_61_0/doc/html/boost/any_cast_idp6057536.html)，`Any` 提供了 `any_cast` 。
->
-> > If passed a pointer, it returns a similarly qualified pointer to the value content if successful, otherwise null is returned. If T is ValueType, it returns a copy of the held value, otherwise, if T is a reference to (possibly const qualified) ValueType, it returns a reference to the held value.
->
-> 也就是对于引用、指针和值会有不同的行为，简单来说就是有无拷贝，这个应该主要和生命周期有关。
->
-> 在 visitor pattern 这个上下文中，如果我们自己做一个 `Any`，`any_cast` 自然也可以在各自的 visitor 中做。 Boost 这样把所有脏的转换逻辑写在 `any_cast` 这个点倒感觉还挺优雅。
->
-> 我好菜啊~!~
-
 ## Requirement
 
 问题是这样的，在写一个支持简单运算的 *Parser* ，所以需要各种表达式。比如说我们有 `Binary` （二元表达式）、 `Unary` （单元表达式）和 `Literal` （数字常量），一般而言我们会抽出一个基类 `Expr` ，所以我们可以有如下的结构：
@@ -96,74 +84,13 @@ struct Unary {
 }
 ```
 
-但上面的代码是编译不过的，因为 C++不支持 *templated virtual function* （虚模板函数），[这个 SO 问题]( https://stackoverflow.com/questions/2354210/can-a-class-member-function-template-be-virtual )已经做了讨论，可供参考。我觉得考虑一些实现细节可能会更好理解，**一般** C++ 是通过 *vtble* 去实现 *virtual function* 和对应的 *dynamic dispatch* ， *vtable* 是固定大小的，然而一个类的 *templated virtual function* 个数是不定的（你给不同的参数，编译器就帮你实例化出来具化的函数），这造成了冲突。
+但上面的代码是编译不过的，因为 C++不支持 *templated virtual function* （虚模板函数），[这个 SO 问题]( https://stackoverflow.com/questions/2354210/can-a-class-member-function-template-be-virtual )已经做了讨论，可供参考。我觉得考虑一些实现细节可能会更好理解，**一般** C++ 是通过 *vtble* 去实现 *virtual function* 和对应的 *dynamic dispatch* ， *vtable* 是固定大小的，然而一个类的 *templated virtual function* 个数是不定的（你给不同的参数，编译器就帮你实例化出来具化的函数），这造成了冲突。可以参考[这个回答](https://stackoverflow.com/a/27709454/10701129) 。
 
-然而理论上来说，我觉得做一些效率或实现难度的折衷应该总是可以实现的。毕竟在编译成可执行文件之前，我们应该总是可以知道我们需要为一个『虚模板函数』做多少次实例化，所以 *vtable* 的大小便可以固定下来（如果这是唯一的原因......）。
+此路不通？大约有两种方式解决。
 
-> 可以参考[这个回答](https://stackoverflow.com/a/27709454/10701129) 。
+## Option 1: Separate Visitor Interface（不推荐，建议跳过）
 
-此路不通，故事结束？据我这两天的探索总结大约是有两种 workaround 。
-
-## Option 1: CRTP
-
-第一种是使用 CRTP ( curiously recurring template pattern ) 即[奇异递归模板模式]( [https://zh.wikipedia.org/wiki/%E5%A5%87%E5%BC%82%E9%80%92%E5%BD%92%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F](https://zh.wikipedia.org/wiki/奇异递归模板模式) )，其实是就是静态多态，伪码大概长这样：
-
-```C++
-template<class Child>
-struct Expr {
-    template<class T>
-    T accept(Visitor<T> &v) {
-        return child()->accept(v);
-    }
-    
-    Child* child() {
-        return static_cast<Child*>(this);
-    }
-};
-
-struct Binary: public Expr<Binary> {
-    template<class T>
-    T accept(Visitor<T> &v) {
-        return v.visitBinary(*this);
-    }
-};
-
-struct Unary: public Expr<Unary>{
-    template<class T>
-    T accept(Visitor<T> &v) {
-        return v.visitUnary(*this);
-    }
-}
-```
-
-CRTP 其实大有用处，可参考
-
--  https://zhuanlan.zhihu.com/p/54945314 
--  https://www.cnblogs.com/yang-wen/p/8573269.html 
-
-回到我们的代码，其实新的问题是，现在 `Expr` 是一个带模板参数的模板类了，并且 `Binary` 和 `Unary` 在继承体系上不再是兄弟节点（`Binary` 的爸爸是 `Expr<Binary>`，`Unary` 的爸爸是 `Expr<Unary>`）。这个问题会造成，所有原来需要 `Expr` 抽象的地方都需要变成 `Expr<T>` 。虽然丑陋，但我猜应该总是可以滴。
-
-## Option 2: Separate Visitor Interface
-
-参考了另一个 [SO 回答](https://stackoverflow.com/questions/2939860/need-a-virtual-template-member-workaround )，先把代码贴过来：
-
-```c++
-class BaseVisited;
-class BaseVisitorInternal {
-public:
-    virtual void visit(BaseVisited*) = 0;
-    virtual ~BaseVisitorInternal() {}
-};
-class BaseVisited {
-    BaseVisited();
-    virtual void accept(BaseVisitorInternal* visitor) { visitor->visit(this); }
-};
-template<typename T> class BaseVisitor : public BaseVisitorInternal {
-    void visit(BaseVisited* visited);
-};
-```
-
-注意 `visit(BaseVisited*)` 方法的返回值都成了 *void* ...... 因为我们的目的就是去除模板参数 *T* （这样一来 `accept()` 就可以是一个非模板函数了）。emmm ，那如果我想要取得这个结果呢...... 这里可以给出丑陋的 demo 代码（和上面的 *AST* 例子不一样，可以参考逻辑）。
+参考了另一个 [SO 回答](https://stackoverflow.com/questions/2939860/need-a-virtual-template-member-workaround )：
 
 ```c++
 #include <string>
@@ -249,14 +176,16 @@ int main()
 }
 ```
 
-其实就是多提供了一个 `Visitor.getRes()` 方法，然后用一个 *data member* `res_` 去缓存中间结果。另外，为了区分一个 `accept()` 或者说 `visit*()` 方法是由用户直接还是间接调用，我们多了一个默认参数 `bool first` ，这个看代码应该很好理解。
+这里多提供了一个 `Visitor.getRes()` 方法，然后用一个 *data member* `res_` 去缓存中间结果。另外，为了区分一个 `accept()` 或者说 `visit*()` 方法是由用户直接还是间接调用，我们多了一个默认参数 `bool first` ，这个看代码应该很好理解。
 
 这种 workaround 除了不优雅之外，另一个问题是 `res_` 是被多次调用共享的，所以在一些情况下比如并发就有问题了。然而至少可以勉强解决我的问题 （：
 
-## Java & Type Erasure
+## Option 2: Type Erasure（推荐）
 
-其实还有第三个办法，换 Java 写...... Java 的泛型的实现是基于 *Type Erasure* ，所以不用费这么大气力，浑然天成...... 另外其实上面第二种方法也有点 *Type Erasure* 的意味。
+第二种办法，换 Java 写...... Java 的泛型的实现是基于 *Type Erasure* （类型擦除）。简单来说，C++ 在编译时会根据模板使用点进行模板实例化，所以会有多份代码；而 Java 只有一份代码，万物皆  Object 。
+
+所以我们可以在库层面模拟 Java 的类型擦除，在 C++ 中自然就是 `void*` 了？其实 boost 有提供强如 `Any` 的东东，根据我自己的需求我也造了一个[小（~~破~~）轮子]( https://github.com/enochii/Tiny-Pratt-Parser/blob/main/any.h)，只能说 `shapred_ptr<void>` 👍👍。
 
 ## Summary
 
-本文简单探索了如何去简陋地模拟 C++ 的虚模板函数，其实如果不需要返回值的话，生活明显会简单很多。因为笔者对 C++ 了解较少，如有错误或疏漏望读者可通过 issue 或邮件至 chenghangshi@gmail.com 指出~
+本文简单探索了如何去简陋地模拟 C++ 的虚模板函数，并给出了对应的实现。因为笔者对 C++ 了解较少，如有错误或疏漏望读者可通过 issue 或邮件至 chenghangshi@gmail.com 指出~
