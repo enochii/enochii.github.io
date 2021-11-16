@@ -35,10 +35,12 @@ As we know, for a store statement `*x = y`, we have the below transfer function:
 
 "Top" here is a **empty map**. That's to say, we will **invalidate the state(IN/OUT) of the store statement**. Though a little surprising, it is mainly for the **monotonicity** of transfer function.
 
-There are also 2 similar cases which may be ignored.
+There are also 2 other similar cases which may be ignored.
 
-The first case is **call via a function pointer whose points-to set is currently empty**. This one is easy to understand —— when we call via a pointer, we need to dereference it.
+The first case is **call via a function pointer whose points-to set is currently empty**. This one is easy to understand —— when we call via a pointer which points to nothing, it maybe points to everything.
 
 The second case is, when we call a function, if the IN state of the callee entry node changes, we need to **invalidate the state of current call instruction, and abort the processing of current function(i.e., caller)**. For example, when we process a function named `F`, and `F` call function `G` at callsite *c*. If the input of `G`'s entry changes, we will clear callsite *c* 's points-to relation(its state), and abort the processing of `F`. Then we will process `G`, after which we process `F` again.
+
+They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we handle this callsite**, we can continue with **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
 
 Why? That's because `G` may have side effect(which is often the case). For instance, this invocation of `G` strong updates some pointers of `F` which are passed to `G` as arguments. For precision we need to consider this and process `F` later.
