@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: Implement a simple call printer(UCAS compiler assignment 2)
-categories: [Program-Analysis, LLVM]
+categories: [Program Analysis, LLVM]
 ---
 
 Haven't written blogs for a long time, mainly because of lack of input and being lazy... Also this blog is written in english though my english is poor, I will try my best to be clear enough. And you are free to point out what's going wrong...
