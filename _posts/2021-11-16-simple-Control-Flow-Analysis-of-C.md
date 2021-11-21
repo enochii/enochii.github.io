@@ -4,10 +4,11 @@ title: Simple Control Flow Analysis of C in the presence of function pointer
 categories: [Program Analysis]
 ---
 
-
-## Simple Control Flow Analysis In the presence of function pointer
+---
 
 It's the assignment 3 of UCAS compiler course, we need to implement a flow sensitive, context and field-insensitive *Control Flow Analysis*. We will find all target callees of each callsite, after that we can build a interprocedural call graph.
+
+For simplicity, the test cases have no recursion. 
 
 ### Basic Idea
 
@@ -17,13 +18,16 @@ These 2 worklists will communicate through call and return, usually we will star
 
 ### Key Points
 
-### Add a function to worklist
+#### Add a function to worklist
 
 Adding a function to global function worklist means that a function needed to be processed. a function needed to be (re)processed when its input changes. There are 2 cases:
 
 - when we encounter a call statement, if the caller gives more information to callee via parameter passing,  we will add the callee into worklist. 
-
 - when a callee return, it may change the information of return sites of its callers, at this case we will re-process all the callers.
+
+#### Map & Unmap data flow(pointer information)
+
+"map" and "unmap" are taken from [1]. In my opinion, "map" means passing data flow carried with parameter and global variable, "unmap" means the inverse operation together with return the information of "return statement". Usually, when we map from caller to callee, we will kill the data flow we mapped. And in unmap stage, we merge them back. If we do not kill the mapped data flow, the precision may get hurt.
 
 #### When to invalidate state?
 
@@ -39,8 +43,16 @@ There are also 2 other similar cases which may be ignored.
 
 The first case is **call via a function pointer whose points-to set is currently empty**. This one is easy to understand —— when we call via a pointer which points to nothing, it maybe points to everything.
 
-The second case is, when we call a function, if the IN state of the callee entry node changes, we need to **invalidate the state of current call instruction, and abort the processing of current function(i.e., caller)**. For example, when we process a function named `F`, and `F` call function `G` at callsite *c*. If the input of `G`'s entry changes, we will clear callsite *c* 's points-to relation(its state), and abort the processing of `F`. Then we will process `G`, after which we process `F` again.
+The second case is, when we call a function which has never been called, we need to **invalidate the state of current call instruction, and abort the processing of current function(i.e., caller)**. For example, when we process a function named `F`, and `F` call function `G` at callsite *c*. If `G` has never been called, we will clear callsite *c* 's points-to relation(its state), and abort the processing of `F`. Then we will process `G`, after which we process `F` again.  Why? That's because `G` may have side effect(which is often the case). For instance, this invocation of `G` strong updates some pointers of `F` which are passed to `G` as arguments. For precision we need to consider this and process `F` later.
 
-They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we handle this callsite**, we can continue with **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
+They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we call this callee**, we can continue with make the output as **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
 
-Why? That's because `G` may have side effect(which is often the case). For instance, this invocation of `G` strong updates some pointers of `F` which are passed to `G` as arguments. For precision we need to consider this and process `F` later.
+### The end
+
+My implementation has some flaws because I understood something recently, but I'm too lazy to fix the problem. It do not handle recursion, even strong updates the heap pointer, which is not sound for a naive heap abstraction[2]. Recursion can be handled if we follow the above approach(my current implementation will abort caller function processing when input of callee entry node changes).
+
+### Reference
+
+[1] Context-Sensitive Interprocedural Points-to Analysis in the Presence of Function Pointers 
+
+[2] Flow-Sensitive Pointer Analysis for Millions of Lines of Code
