@@ -3,7 +3,6 @@
   line-height: 2;
   /* word-break: keep-all; */
   /* word-break: break-all; */
-  -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
@@ -96,7 +95,6 @@
   margin: 0 2px;
   border-radius: 4px;
   color: #4d4d4c;
-  -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
