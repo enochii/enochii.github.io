@@ -12,7 +12,7 @@ For simplicity, the test cases have no recursion.
 
 ### Basic Idea
 
-To get a whole program fixed point, an intuitive approach is, use **2 kinds of worklist**. One is function worklist, all functions waited to be processed are placed here. The other one is Basic Block worklist for each function. we can think the latter as the fixed point calculation of a function unit (intraprocedurally).
+To get a whole program fixed point, an intuitive approach is, using **2 kinds of worklist**. One is function worklist, all functions waited to be processed are placed here. The other one is Basic Block worklist for each function. we can think the latter as the fixed point calculation of a function unit (intraprocedurally).
 
 These 2 worklists will communicate through call and return, usually we will start from entry method(e.g., `main` method). 
 
@@ -27,7 +27,7 @@ Adding a function to global function worklist means that a function needed to be
 
 #### Map & Unmap data flow(pointer information)
 
-"map" and "unmap" are taken from [1]. In my opinion, "map" means passing data flow carried with parameter and global variable, "unmap" means the inverse operation together with returning the information of "return statement". Usually, when we map from caller to callee, we will kill the data flow we mapped. And in unmap stage, we merge them back. If we do not kill the mapped data flow, the precision may get hurt.
+"map" and "unmap" are taken from [1]. In my opinion, "map" means passing data flow carried with parameter and global variable, "unmap" means the reversed operation of "map" together with returning the information of "return statement". Usually, when we map from caller to callee, we will kill the data flow we mapped. And in unmap stage, we merge them back. If we do not kill the mapped data flow, the precision may get hurt.
 
 #### When to invalidate state?
 
@@ -45,7 +45,7 @@ The first case is **call via a function pointer whose points-to set is currently
 
 The second case is, when we call a function which has never been called, we need to **invalidate the state of current call instruction, and abort the processing of current function(i.e., caller)**. For example, when we process a function named `F`, and `F` call function `G` at callsite *c*. If `G` has never been called, we will clear callsite *c* 's points-to relation(its state), and abort the processing of `F`. Then we will process `G`, after which we process `F` again.  Why? That's because `G` may have side effect(which is often the case). For instance, this invocation of `G` strong updates some pointers of `F` which are passed to `G` as arguments. For precision we need to consider this and process `F` later.
 
-They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we call this callee**, we can continue with making the output as **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
+They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we call this callee**, we can continue with making the output as **the old return information** (DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
 
 ### The end
 
