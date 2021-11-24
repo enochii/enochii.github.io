@@ -37,7 +37,7 @@ As we know, for a store statement `*x = y`, we have the below transfer function:
 - S = S ∪ {v0 →S(y)} …∪ {vn →S(y)}, if S(x)={v0…vn} // weak update
 - S = Top, if S(x) is empty
 
-"Top" here is a **empty map**. That's to say, we will **invalidate the state(IN/OUT) of the store statement**. Though a little surprising, it is mainly for the **monotonicity** of transfer function.
+"Top" here is a **empty map**. That's to say, in the last case, we will **invalidate the state(IN/OUT) of the store statement**. Though a little surprising, it is mainly for the **monotonicity** of transfer function.
 
 There are also 2 other similar cases which may be ignored.
 
@@ -49,9 +49,11 @@ They are all for **monotonicity**. And for the latter case, if it's NOT **the fi
 
 ### The end
 
-My implementation has some flaws because I understood something recently, but I'm too lazy to fix the problem. It do not handle recursion, even strong updates the heap pointer, which is not sound for a naive heap abstraction[2]. Actually, to pass all the test cases, it seems that we have to strong update all the time even the points-to set is larger than 1... Really not cool~
+My implementation has some flaws. It does not handle recursion, even strong updates the heap pointer, which is not sound for a naive heap abstraction[2]. Actually, to pass all the test cases, it seems that we have to strong update all the time even when the points-to set is larger than 1... Dube, that's really not cool...
 
-Recursion can be handled if we follow the above approach. My current implementation will abort caller function processing when input of callee entry node changes rather than just when the callee is first processed. Also, remember to kill the mapped data flow and, merge them back at unmapping stage even the points-to set of mapped part DOES NOT changes, which is the same thing we need to do when the mapped part changes.
+Recursion could be handled if we follow the above approach. My current implementation will abort caller function processing when input of callee's entry node changes rather than just when the callee is processed for the first time. Also, remember to kill the mapped data flow and, merge them back at unmapping stage even the points-to set of mapped part DOES NOT changes, which is the same thing we are supposed to do when the mapped part changes.
+
+Ok, that's all I want to say, if you find the description is wrong or ambiguous, I would appreciate if you give me some advice!
 
 ### Reference
 
