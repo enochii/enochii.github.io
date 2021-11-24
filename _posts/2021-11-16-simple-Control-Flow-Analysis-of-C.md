@@ -27,7 +27,7 @@ Adding a function to global function worklist means that a function needed to be
 
 #### Map & Unmap data flow(pointer information)
 
-"map" and "unmap" are taken from [1]. In my opinion, "map" means passing data flow carried with parameter and global variable, "unmap" means the inverse operation together with return the information of "return statement". Usually, when we map from caller to callee, we will kill the data flow we mapped. And in unmap stage, we merge them back. If we do not kill the mapped data flow, the precision may get hurt.
+"map" and "unmap" are taken from [1]. In my opinion, "map" means passing data flow carried with parameter and global variable, "unmap" means the inverse operation together with returning the information of "return statement". Usually, when we map from caller to callee, we will kill the data flow we mapped. And in unmap stage, we merge them back. If we do not kill the mapped data flow, the precision may get hurt.
 
 #### When to invalidate state?
 
@@ -45,11 +45,13 @@ The first case is **call via a function pointer whose points-to set is currently
 
 The second case is, when we call a function which has never been called, we need to **invalidate the state of current call instruction, and abort the processing of current function(i.e., caller)**. For example, when we process a function named `F`, and `F` call function `G` at callsite *c*. If `G` has never been called, we will clear callsite *c* 's points-to relation(its state), and abort the processing of `F`. Then we will process `G`, after which we process `F` again.  Why? That's because `G` may have side effect(which is often the case). For instance, this invocation of `G` strong updates some pointers of `F` which are passed to `G` as arguments. For precision we need to consider this and process `F` later.
 
-They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we call this callee**, we can continue with make the output as **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
+They are all for **monotonicity**. And for the latter case, if it's NOT **the first time we call this callee**, we can continue with making the output as **the old return information**(DO NOT just escape the transfer function of this callsite and take the *IN* as the *OUT* state). Because we give the callee more information this time, the output **will not shrink**. Take the old return-information will not hurt monotonicity.
 
 ### The end
 
-My implementation has some flaws because I understood something recently, but I'm too lazy to fix the problem. It do not handle recursion, even strong updates the heap pointer, which is not sound for a naive heap abstraction[2]. Recursion can be handled if we follow the above approach(my current implementation will abort caller function processing when input of callee entry node changes).
+My implementation has some flaws because I understood something recently, but I'm too lazy to fix the problem. It do not handle recursion, even strong updates the heap pointer, which is not sound for a naive heap abstraction[2]. Actually, to pass all the test cases, it seems that we have to strong update all the time even the points-to set is larger than 1... Really not cool~
+
+Recursion can be handled if we follow the above approach. My current implementation will abort caller function processing when input of callee entry node changes rather than just when the callee is first processed. Also, remember to kill the mapped data flow and, merge them back at unmapping stage even the points-to set of mapped part DOES NOT changes, which is the same thing we need to do when the mapped part changes.
 
 ### Reference
 
