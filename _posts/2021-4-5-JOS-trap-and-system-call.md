@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: JOS之中断和系统调用
-categories: [OS, 6.828]
+categories: [OS, mit6.828]
 ---
 
 lab 3 断断续续写了小久，终于糊完了。虽然没能完全独立地解决所有实现细节，但对 JOS 系统调用的实现有了点理解，在此做下记录。

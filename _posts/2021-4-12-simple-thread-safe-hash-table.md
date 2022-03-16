@@ -1,7 +1,7 @@
 ---
 layout: mypost
 title: "Homework: Threads and Locking"
-categories: [6.828]
+categories: [mit6.828]
 ---
 
 一个很简单的多线程哈希表实现，让我们在对应的位置加上 lock 和 unlock 。
