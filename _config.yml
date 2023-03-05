@@ -37,7 +37,7 @@ menu:
   # - title: 留言
   #   url: /pages/chat.html
   - title: About
-    url: /homepage/index.html
+    url: /
 
 # 点击页面文字冒出特效,不需要请设置为false
 extClickEffect: true
