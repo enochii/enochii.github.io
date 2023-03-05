@@ -1,8 +1,10 @@
 encoding: utf-8
 
 # SEO相关信息
-title: Enochii's Kindergarten
-description: Enochii's Blog
+theme: jekyll-theme-hacker
+title: Chenghang shi(施程航)
+description: personal website
+
 keywords: No-Keyword
 author: Enochii
 footerText: ''
@@ -25,7 +27,7 @@ tucaoUrl: https://support.qq.com/product/86335
 # 菜单
 menu:
   - title: Home
-    url: /
+    url: /pages/blog.html
   - title: Archive
     url: /pages/categories.html
   - title: Search
