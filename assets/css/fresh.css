@@ -1,0 +1,303 @@
+/* Academic Theme - Inspired by wenjiema.com */
+
+:root {
+    --primary-color: #007acc;
+    --bg-color: #FDF7F0;
+    --text-primary: #222;
+    --text-secondary: #444;
+    --accent-color: #c17900;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Helvetica Neue', serif, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Header Section - Two Column Layout */
+.header-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.header-left {
+    flex: 1 1 250px;
+    text-align: center;
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-info h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.chinese-name {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.header-info .affiliation {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.header-info .email {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.social-links {
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    margin: 0 6px;
+}
+
+.header-right {
+    flex: 2 1 400px;
+}
+
+/* Main Content Area */
+.main-content {
+    max-width: 100%;
+}
+
+/* Section */
+.section {
+    margin-top: 30px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+}
+
+.section p {
+    font-size: 1.05rem;
+    margin-bottom: 1.1em;
+}
+
+/* Lists */
+.content-list {
+    padding-left: 20px;
+}
+
+.content-list li {
+    margin-bottom: 0.8em;
+    color: var(--text-secondary);
+}
+
+.content-list li b {
+    color: var(--text-primary);
+}
+
+/* News Section */
+.news-scroll-container {
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+.news-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.news-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.news-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.news-item {
+    margin-bottom: 0.8em;
+    display: flex;
+    gap: 10px;
+}
+
+.news-date {
+    color: var(--primary-color);
+    font-weight: 500;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.news-text {
+    color: var(--text-secondary);
+}
+
+/* Publications Section */
+#publications-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pub-year-group {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.pub-year-label {
+    flex-shrink: 0;
+    width: 80px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    padding-top: 2px;
+}
+
+.pub-year-content {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+}
+
+.pub-item {
+    margin-bottom: 18px;
+}
+
+.pub-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: nowrap;
+}
+
+.pub-badge {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.pub-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.pub-title a {
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.pub-authors {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+}
+
+.pub-venue {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Awards highlight */
+.award {
+    color: var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer a {
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-left {
+        flex: 1 1 auto;
+    }
+
+    .header-right {
+        flex: 1 1 auto;
+    }
+
+    .news-item {
+        flex-direction: column;
+    }
+
+    .news-date {
+        align-self: flex-start;
+    }
+}

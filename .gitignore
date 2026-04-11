@@ -4,3 +4,9 @@
 /Gemfile.lock
 /.jekyll-cache
 /.xxx
+/.sass-cache
+.claude
+.DS_Store
+*.swp
+*~
+

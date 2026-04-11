@@ -1,263 +1,122 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="robots" content="index, follow" />
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="keywords" content="Chenghang Shi, 施程航, Program Analysis, Software Engineering, Institute of Computing Technology, Chinese Academy of Sciences">
-<link rel="stylesheet" href="./static/css/jemdoc.css" type="text/css" />
-<script src="./static/js/jquery.min.js"></script>
-<title>Chenghang Shi (施程航)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Chenghang Shi, 施程航, Program Analysis, Software Engineering, Institute of Computing Technology, Chinese Academy of Sciences">
+    <meta name="description" content="Chenghang Shi (施程航) - Personal Website">
+    <title>Chenghang Shi (施程航)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/fresh.css" type="text/css" />
 </head>
- 
- 
 <body>
 
-<a id="home" class="anchor"></a>
-<div id="container"> 
-<div class="container"> 
+<div class="container">
+    <!-- Header Section - Two Column Layout -->
+    <div class="header-section">
+        <div class="header-left">
+            <div class="profile-photo">
+                <img src="./assets/images/profile/photo.png" alt="Chenghang Shi" />
+            </div>
+            <div class="header-info">
+                <h2>Chenghang Shi <span class="chinese-name">(施程航)</span></h2>
+                <!-- <p class="affiliation">
+                    <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, CAS</a>
+                </p> -->
+                <p class="email">chenghangshi [AT] gmail [DOT] com</p>
+                <div class="social-links">
+                    <a href="https://github.com/enochii" target="_blank">GitHub</a>
+                    <a href="./pages/blog.html" target="_blank">Blog</a>
+                    <a href="https://scholar.google.com/citations?user=xxx" target="_blank">Google Scholar</a>
+                    <a href="https://twitter.com/sch0016" target="_blank">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <section class="section">
+                <h2 class="section-title">About Me</h2>
+                <p>
+                    I am a Ph.D. candidate at the <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a>,
+                    under the supervision of <a href="https://scholar.google.com.au/citations?user=yAIhkEsAAAAJ&hl=en" target="_blank">Prof. Lian Li</a>.
+                    Prior to this, I obtained my Bachelor's degree at the School of Software Engineering, Tongji University, respectively.
+                </p>
+                <p style="margin-top: 16px;">
+                    I am broadly interested in programming languages and program analysis, encompassing both fundamental problems—such as pointer analysis and
+                    graph-reachability-based techniques (e.g., IFDS and CFL-reachability)—and practical applications like vulnerability detection.
+                    I am also interested in leveraging large language models (LLMs) for classic PL and SE tasks.
+                </p>
+                <p style="margin-top: 16px;">
+                    Feel free to drop me an email if you want to talk. :-)
+                </p>
+            </section>
+        </div>
+    </div>
 
-<table class="imgtable"><tr><td>
-<a href="./"><img src="./Files/photo.png" alt="" height="195px" /></a>&nbsp;</td>
-<td align="left"><p><font size="4">Chenghang Shi (</font><font size="4"; font style="font-family:Microsoft YaHei">施程航</font><font size="4">)</font><br />
-<!-- <i> Ph.D. candidate </i>  -->
-<br /><br />
-<a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a><br />
-<br />
-Beijing<br />
-Email: chenghangshi [AT] gmail [DOT] com &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-<!-- shichenghang21 [AT] gmail [DOT] com <br /> -->
-<br />
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- News Section -->
+        <section class="section" id="news">
+            <h2 class="section-title">News</h2>
+            <div class="news-scroll-container">
+                <div id="news-container" class="news-list"></div>
+            </div>
+        </section>
 
-<!-- [<a href="./Files/resume.pdf" target="_blank">Resume</a>]  -->
-<!-- [<a href="https://scholar.google.com/" target="_blank">Google Scholar</a>]  -->
-[<a href="https://github.com/enochii" target="_blank">GitHub</a>] 
-[<a href="./pages/blog.html" target="_blank">Blog</a>] 
-<!-- [<a href="https://www.linkedin.com/" target="_blank">LinkdeIn</a>] -->
-[<a href="https://twitter.com/sch0016" target="_blank">Twitter</a>]
+        <!-- Publications Section -->
+        <section class="section" id="publications">
+            <h2 class="section-title">Publications</h2>
+            <div id="publications-container"></div>
+        </section>
 
- <br />
- <br />
+        <!-- Experience Section -->
+        <section class="section" id="experience">
+            <h2 class="section-title">Experience</h2>
+            <ul id="experience-container" class="content-list"></ul>
+        </section>
 
-<class="staffshortcut">
- <A HREF="#Short Bio">Short bio</A> | 
- <A HREF="#Education">Education</A> | 
- <!-- <A HREF="#News">News</A> |  -->
- <!-- <A HREF="#Papers">Papers</A> |  -->
- <A HREF="#Internship">Internship</A> | 
- <!--A HREF="#Projects">Projects</A-->  
- <A HREF="#Awards">Awards</A> |
- <!-- <A HREF="#Service">Service</A>  -->
- <!--A HREF="#Misc">Misc</A-->  
-</td></tr></table>
+        <!-- Awards Section -->
+        <section class="section" id="awards">
+            <h2 class="section-title">Awards</h2>
+            <ul id="awards-container" class="content-list"></ul>
+        </section>
 
+        <!-- Service Section -->
+        <section class="section" id="service">
+            <h2 class="section-title">Service</h2>
+            <ul id="service-container" class="content-list"></ul>
+        </section>
 
- 
-<A NAME="Short Bio"><h2>Short Bio</h2></A>
-I am a Ph.D. candidate at the <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a>,
- under the supervision of <a href="https://scholar.google.com.au/citations?user=yAIhkEsAAAAJ&hl=en" target="_blank">Prof. Lian Li</a>.
-Prior to this, I obtained my Bachelor's degree at Tongji University.
-
-<br />
-<br />I am broadly interested in programming languages and program analysis, 
- encompassing both fundamental problems—such as pointer analysis and 
- graph-reachability-based techniques (e.g., IFDS and CFL-reachability)—and practical applications like vulnerability detection. 
- I am also interested in leveraging large language models (LLMs) for classic PL and SE tasks.
-
-<!--  Particularly, I enjoy working on program analysis problems from various perspectives such as graph/database theory and formal languages.
-I am deeply amazed by the connection of techniques across different research communities. -->
-
-
-<br />
-<br />
-:-) Feel free to drop me an email if you want to talk.
-
- 
-<A NAME="Education"><h2>Education</h2></A>
-<ul>
-<li>03/2024 - Now &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    Ph.D. candidate at the <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a><br /></li>
-<li>09/2021 - 03/2024 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    Master student at the <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a><br /></li>
-<li>09/2016 - 07/2021 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bachelor student at the 
-    <a href="https://sse.tongji.edu.cn/" target="_blank">School of Software Engineering</a>, 
-    <a href="https://www.tongji.edu.cn/" target="_blank">Tongji University</a></li>
-</ul>
-
-
-<!-- <A NAME="News"><h2>News</h2></A>
-<ul>
-<li>  </li>   
-</ul> -->
-
-<A NAME="Publications"><h2>Publications</h2></A>
-
-<font size="3"> 
-<ul>  
-
-<p style="text-indent: -1.6rem;margin-left: 0rem;">
-
-<li>
-ICSE'26: No Shot in the Dark: Efficient Context-Free Language Reachability via Context-Aware Tabulation
-<br><b>Chenghang Shi</b>, Lian Li
-<br><i>The 48th IEEE/ACM International Conference on Software Engineering</i>
-</li>
- 
-<li>
- OOPSLA'25: Fast Client-Driven CFL-Reachability via Regularization-Based Graph Simplification
- [<a href="https://dl.acm.org/doi/pdf/10.1145/3763065" target="_blank">pdf</a>]
- <br><b>Chenghang Shi</b>, Dongjie He, Haofeng Li, Jie Lu, Lian Li, and Jingling Xue
- <br><i>2025 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications</i>
-</li>
- 
-<li>
-USENIX Security'25: ZIPPER: Static Taint Analysis for PHP Applications with Precision and Efficiency
-[<a href="https://www.usenix.org/system/files/usenixsecurity25-wang-xinyi.pdf" target="_blank">pdf</a>]
- <br>Xinyi Wang, Yeting Li, Jie Lu, Shizhe Cui, <b>Chenghang Shi</b>, Qin Mai, Yunpei Zhang, Yang Xiao, Feng Li, Wei Huo
-<br><i>The 34th USENIX Security Symposium</i>
-</li>
- 
-<li>
-FSE'25: VulPA: Detecting Semantically Recurring Vulnerabilities with Multi-Object Typestate Analysis
-[<a href="https://leehaofeng.github.io/papers/2025-VulPA.pdf" target="_blank">pdf</a>]
- <br>Liqing Cao, Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Haining Meng, Lian Li and Jingling Xue
-<br><i>The ACM International Conference on the Foundations of Software Engineering</i>
-</li>
- 
-<li>
-ICSE'25: Module-Aware Context Sensitive Pointer Analysis
- [<a href="https://leehaofeng.github.io/papers/2025-MPA.pdf" target="_blank">pdf</a>]
-<br>Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Zixuan Zhao
-<br><i>The 47th IEEE/ACM International Conference on Software Engineering</i>
-</li>
- 
-<li>
-ISSTA'24: Better Not Together: Staged Solving for Context-Free Language Reachability
-[<a href="https://enochii.github.io/publications/issta24-stg.pdf" target="_blank">pdf</a>]
-<br><b>Chenghang Shi</b>, Haofeng Li, Jie Lu, Lian Li
-<br><i>The 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis</i>
-</li>
-
-<li>
-TSE'24: PEARL: A Multi-Derivation Approach to Efficient CFL-Reachability Solving
-[<a href="https://enochii.github.io/publications/tse24-multi-derivation-preprint.pdf" target="_blank">pdf</a>]
-<br><b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue.
-<br><i>Transactions on Software Engineering, 2024</i>
-</li>
-
-<li>
-OOPSLA'24: Boosting the Performance of Alias-Aware IFDS Analysis with CFL-based Environment Transformers
-[<a href="https://enochii.github.io/publications/oopsla24-IDEDroid.pdf" target="_blank">pdf</a>]
-<br>Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Jingling Xue
-<br><i>2024 ACM SIGPLAN Conference on Objected Oriented Programming, Systems, Languages, and Applications</i>
-</li>
-
-<li>
-CCS'24: Detecting Broken Object-Level Authorization Vulnerabilities in Database-Backed Applications
-[<a href="https://dl.acm.org/doi/pdf/10.1145/3658644.3690227" target="_blank">pdf</a>]
-<br>Yongheng Huang, <b>Chenghang Shi</b>, Jie Lu, Haofeng Li, Haining Meng, Lian Li
-<br><i>The 31th ACM SIGSAC Conference on Computer and Communications Security</i>
-</li>
-
-<li>
-ICECCS'24: AutoWeb: Automatically Inferring Web Framework Semantics via Configuration Mutation
-[<a href="https://enochii.github.io/publications/iceccs24-AutoWeb.pdf" target="_blank">pdf</a>]
-<br>Haining Meng, Haofeng Li, Jie Lu, <b>Chenghang Shi</b>, Liqing Cao, Lian Li, Lin Gao
-<br><i>The 28th International Conference on Engineering of Complex Computer Systems</i>
-</li>
-
-<li> ASE'23: Two Birds with One Stone: Multi-Derivation for Fast Context-Free Language Reachability Analysis
-[<a href="https://enochii.github.io/publications/ase23-pearl.pdf" target="_blank">pdf</a>]
-[<a href="https://enochii.github.io/slides/ase23-slides.pdf" target="_blank">slides</a>]
-<!-- [<a href="https://figshare.com/articles/dataset/ASE_2023_artifact/23702271" target="_blank">artifact</a>] <br>  -->
-<br><b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue
-<br><i>The 38th IEEE/ACM International Conference on Automated Software Engineering</i>
-<!-- <br><i>Check out the extended version</i> -->
-</li>
-
-</p>
-
-</ul>
-</font>
-
-
-<!--p><b>Patents</b>: </p>
-<font size="3"> 
-<ul>
-
-</ul>
-</font-->
-
-
-<A NAME="Internship"><h2>Internship</h2></A>
-<ul>
-<li>05/2022 - 12/2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Research Intern at Ant Group</a><br /></li>
-</ul>
-
-
-<A NAME="Awards"><h2>Awards</h2></A>
-<font size="3"> 
-<ul>
-<li>National Scholarship. 2024</li>
-<li>Outstanding Graduates in Tongji University. 2021</li>
-<li>First Class Scholarship in Tongji University. 2019, 2020</li>
-</ul>
-</font>
-
-<A NAME="Service"><h2>Service</h2></A>
-<ul>
-<li>Sub-reviewer: ISSTA'24, ASE'23<br /></li>
-</ul>
- 
-<!-- <A NAME="Service"><h2>Service</h2></A>
-<p><b>Conference Reviewer</b>: </p>
-<font size="3"> 
-<ul>
-    <li>The Conference on Computer Vision and Pattern Recognition (CVPR) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2022, 2023</li>
-</ul>
-</font> -->
-
-<!--A NAME="Misc"><h2>Misc</h2></A>
-<font size="3"> 
-<ul>
-</ul>
-</font-->
-
-<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5hlcnbxdjk4&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
-<div id="article"></div>
-<div id="back_top">
-<div class="arrow"></div>
-<div class="stick"></div>
+        <!-- Education Section -->
+        <section class="section" id="education">
+            <h2 class="section-title">Education</h2>
+            <ul class="content-list">
+                <li>
+                    <b>09/2021 - Now</b> &mdash; Ph.D. candidate at the
+                    <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a>
+                </li>
+                <!-- <li>
+                    <b>09/2021 - 03/2024</b> &mdash; Master student at the
+                    <a href="http://www.ict.ac.cn/" target="_blank">Institute of Computing Technology, Chinese Academy of Sciences</a>
+                </li> -->
+                <li>
+                    <b>09/2016 - 07/2021</b> &mdash; Bachelor student at the
+                    <a href="https://sse.tongji.edu.cn/" target="_blank">School of Software Engineering</a>,
+                    <a href="https://www.tongji.edu.cn/" target="_blank">Tongji University</a>
+                </li>
+            </ul>
+        </section>
+    </div>
 </div>
 
-<script>
-$(function(){
-    $(window).scroll(function(){  //If scroll
-        var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //Getting Height after scroll
-        if( scrollt >400 )
-        {  
-            $("#back_top").fadeIn(400); 
-        }
-        else
-        {
-            $("#back_top").stop().fadeOut(400);
-        }
-    });
+<!-- Footer -->
+<div class="footer">
+    <p>Last Updated: <script>document.write(new Date().toLocaleDateString());</script></p>
+</div>
 
-    $("#back_top").click(function(){ 
-
-        $("html,body").animate({scrollTop:"0px"}, 200);
-
-    }); 
-
-});
-</script>
-
-
-<font size="2.5"; color="#A0A0A0";>
-<p>Part of the page is generated by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.</p>
-<p>Last Updated: <script type="text/javascript">document.write(document.lastModified);</script>.</p>
-</font>
+<script src="./assets/js/main.js"></script>
 
 </body>
 </html>

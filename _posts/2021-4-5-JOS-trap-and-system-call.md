@@ -283,7 +283,7 @@ sys_cgetc(void)
 
 最终，我们可以给出这么一个系统调用的流程图：
 
-![系统调用流程](syscall.png)
+![系统调用流程](/assets/img/posts/syscall.png)
 
 ### Reference
 

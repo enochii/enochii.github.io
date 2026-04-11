@@ -10,4 +10,4 @@ Please say something.
 
 Here is a picture:
 
-![alt](1.jpg)
+![alt](/assets/img/posts/1.jpg)

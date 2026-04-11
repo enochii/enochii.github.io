@@ -12,7 +12,7 @@ categories: [Design, C++]
 
 问题是这样的，在写一个支持简单运算的 *Parser* ，所以需要各种表达式。比如说我们有 `Binary` （二元表达式）、 `Unary` （单元表达式）和 `Literal` （数字常量），一般而言我们会抽出一个基类 `Expr` ，所以我们可以有如下的结构：
 
-![expr](expr.jpg)
+![expr](/assets/img/posts/expr.jpg)
 
 其实表达式就是我们平时说的 *AST* 。接着我们需要为每种表达式提供某种操作，比如 *evaluate* （求值），*pretty-printing* （按某种格式打印 *AST*）。[这篇文章]( https://enochii.github.io/posts/2020/11/22/Expression-Problem-&-Visitor-Pattern.html )提到有两种手法来提供操作，一种是 *OO* 的做法，就是在继承体系中给每一个节点都添加一个方法（比如 `eval()`），另一种是用 *Visitor Pattern*（访问者模式），本文会采用后者。
 

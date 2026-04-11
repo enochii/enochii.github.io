@@ -172,11 +172,11 @@ var a = 1;
 
 当编译进行到 [1] 处时，locals 数组会有三个变量，对应的下标分别是 0 1 2。我们的哈希表中存放的映射是：
 
-![hash table](1.jpg)
+![hash table](/assets/img/posts/1.jpg)
 
 来到 [2] 处，`var a = 3` 定义已经被清除，哈希表中的映射 "a" 会被调整为：
 
-![hash table](2.jpg)
+![hash table](/assets/img/posts/2.jpg)
 
 借此，我们就完成了对 *scope* 的建模。在 [1] 处读写变量通过哈希表获得的下标是2，对应的为最内层定义 `var a = 3` 。
 

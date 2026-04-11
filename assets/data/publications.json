@@ -1,0 +1,104 @@
+{
+  "2026": [
+    {
+      "venue": "FSE'26",
+      "title": "SpecWeaver: End-to-End HTTP API Specification Inference Across Multi-Layer Routing in Production Web Services",
+      "authors": "Wenbo Hu, Jie Lu, Jingting Chen, Feng Li, <b>Chenghang Shi</b>, Xiaonan Shi, Jinchen Wang, Wei Huo",
+      "full_venue": "2026 ACM International Conference on the Foundations of Software Engineering",
+      "links": []
+    },
+    {
+      "venue": "OOPSLA'26",
+      "title": "Context-Free Language Reachability via Efficient Relation Chaining",
+      "authors": "<b>Chenghang Shi</b>, Haofeng Li, Jie Lu, and Lian Li",
+      "full_venue": "2026 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
+      "links": [{"name": "pdf", "url": "https://dl.acm.org/doi/pdf/10.1145/3798270"}]
+    },
+    {
+      "venue": "ICSE'26",
+      "title": "No Shot in the Dark: Efficient Context-Free Language Reachability via Context-Aware Tabulation",
+      "authors": "<b>Chenghang Shi</b>, Lian Li",
+      "full_venue": "The 48th IEEE/ACM International Conference on Software Engineering",
+      "links": []
+    }
+  ],
+  "2025": [
+    {
+      "venue": "OOPSLA'25",
+      "title": "Fast Client-Driven CFL-Reachability via Regularization-Based Graph Simplification",
+      "authors": "<b>Chenghang Shi</b>, Dongjie He, Haofeng Li, Jie Lu, Lian Li, and Jingling Xue",
+      "full_venue": "2025 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
+      "links": [{"name": "pdf", "url": "https://dl.acm.org/doi/pdf/10.1145/3763065"}]
+    },
+    {
+      "venue": "USENIX Security'25",
+      "title": "ZIPPER: Static Taint Analysis for PHP Applications with Precision and Efficiency",
+      "authors": "Xinyi Wang, Yeting Li, Jie Lu, Shizhe Cui, <b>Chenghang Shi</b>, Qin Mai, Yunpei Zhang, Yang Xiao, Feng Li, Wei Huo",
+      "full_venue": "The 34th USENIX Security Symposium",
+      "links": [{"name": "pdf", "url": "https://www.usenix.org/system/files/usenixsecurity25-wang-xinyi.pdf"}]
+    },
+    {
+      "venue": "FSE'25",
+      "title": "VulPA: Detecting Semantically Recurring Vulnerabilities with Multi-Object Typestate Analysis",
+      "authors": "Liqing Cao, Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Haining Meng, Lian Li and Jingling Xue",
+      "full_venue": "The ACM International Conference on the Foundations of Software Engineering",
+      "links": [{"name": "pdf", "url": "https://leehaofeng.github.io/papers/2025-VulPA.pdf"}]
+    },
+    {
+      "venue": "ICSE'25",
+      "title": "Module-Aware Context Sensitive Pointer Analysis",
+      "authors": "Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Zixuan Zhao",
+      "full_venue": "The 47th IEEE/ACM International Conference on Software Engineering",
+      "links": [{"name": "pdf", "url": "https://leehaofeng.github.io/papers/2025-MPA.pdf"}]
+    }
+  ],
+  "2024": [
+    {
+      "venue": "ISSTA'24",
+      "title": "Better Not Together: Staged Solving for Context-Free Language Reachability",
+      "authors": "<b>Chenghang Shi</b>, Haofeng Li, Jie Lu, Lian Li",
+      "full_venue": "The 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis",
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/issta24-stg.pdf"}]
+    },
+    {
+      "venue": "TSE'24",
+      "title": "PEARL: A Multi-Derivation Approach to Efficient CFL-Reachability Solving",
+      "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
+      "full_venue": "Transactions on Software Engineering, 2024",
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/tse24-multi-derivation-preprint.pdf"}]
+    },
+    {
+      "venue": "OOPSLA'24",
+      "title": "Boosting the Performance of Alias-Aware IFDS Analysis with CFL-based Environment Transformers",
+      "authors": "Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Jingling Xue",
+      "full_venue": "2024 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/oopsla24-IDEDroid.pdf"}]
+    },
+    {
+      "venue": "CCS'24",
+      "title": "Detecting Broken Object-Level Authorization Vulnerabilities in Database-Backed Applications",
+      "authors": "Yongheng Huang, <b>Chenghang Shi</b>, Jie Lu, Haofeng Li, Haining Meng, Lian Li",
+      "full_venue": "The 31st ACM SIGSAC Conference on Computer and Communications Security",
+      "links": [{"name": "pdf", "url": "https://dl.acm.org/doi/pdf/10.1145/3658644.3690227"}]
+    },
+    {
+      "venue": "ICECCS'24",
+      "title": "AutoWeb: Automatically Inferring Web Framework Semantics via Configuration Mutation",
+      "authors": "Haining Meng, Haofeng Li, Jie Lu, <b>Chenghang Shi</b>, Liqing Cao, Lian Li, Lin Gao",
+      "full_venue": "The 28th International Conference on Engineering of Complex Computer Systems",
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/iceccs24-AutoWeb.pdf"}]
+    }
+  ],
+  "2023": [
+    {
+      "venue": "ASE'23",
+      "title": "Two Birds with One Stone: Multi-Derivation for Fast Context-Free Language Reachability Analysis",
+      "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
+      "full_venue": "The 38th IEEE/ACM International Conference on Automated Software Engineering",
+      "links": [
+        {"name": "pdf", "url": "https://enochii.github.io/publications/ase23-pearl.pdf"},
+        {"name": "slides", "url": "https://enochii.github.io/slides/ase23-slides.pdf"}
+      ]
+    }
+  ]
+}

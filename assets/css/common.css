@@ -117,7 +117,7 @@ input:-webkit-autofill {
   padding: 40px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .header .logo {
   width: 40px;
@@ -136,7 +136,7 @@ input:-webkit-autofill {
 }
 .header .menu {
   margin-right: -9px;
-  text-align: right;
+  text-align: left;
 }
 .header .menu a {
   display: inline-block;

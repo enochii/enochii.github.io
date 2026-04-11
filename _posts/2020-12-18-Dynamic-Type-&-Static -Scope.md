@@ -37,7 +37,7 @@ class A {
 
 我拍脑袋一想，给每个 instance 都弄一个环境，在 setter 时顺便把 field 扔进去，另外把 this 也放进去，不就成了？
 
-![alt](1.jpg)
+![alt](/assets/img/posts/1.jpg)
 
 不成......
 

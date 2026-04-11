@@ -10,7 +10,7 @@ categories: [Compiler, Design Pattern, Design]
 
 Expression Problem 指的是你有 n 个类型和 m 个操作，所以会组成一个 n * m 的矩阵。如下图：
 
-![matrix](./1.jpg)
+![matrix](/assets/img/posts/1.jpg)
 
 这里举的例子是对于各种 AST Node 类型，我们会进行不同的操作，比如 interpret（求值）、pretty print（打印 human-readable 的 AST）等。叫做 "Expression Problem" 一开始也是因为在编译器设计中尝试对 AST 表达式建模而得名。
 

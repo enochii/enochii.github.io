@@ -1,11 +1,11 @@
 @echo off
 
-echo 0.安装  1.启动(8899)  2.编译  3.部署
+echo 0. Install  1. Start(8899)  2. Build  3. Deploy
 set input=
-set /p input=请输入选项:
+set /p input=Select option:
 
 if "%input%" == "0" call :installFunc
-if "%input%" == "1" call :startFunc  8899
+if "%input%" == "1" call :startFunc 8899
 if "%input%" == "2" call :buildFunc
 if "%input%" == "3" call :deployFunc
 
@@ -24,13 +24,13 @@ call bundle exec jekyll build --destination=dist
 goto :eof
 
 :deployFunc
-REM 编译
+REM Build
 call :buildFunc
-REM 切换到发布工具目录
+REM Switch to deploy directory
 D:
 cd D:\vscode-work-space\workspace-go\blog-deploy
 go run main.go
-REM 回到脚本目录
+REM Switch back
 %~d0
 cd %~dp0
 goto :eof
