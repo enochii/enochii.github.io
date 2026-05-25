@@ -12,7 +12,7 @@ categories: [Compiler]
 
 我原来的想法是把函数定义和函数定义点的 environment 进行绑定，看起来像这样：
 
-<img src="1.jpg" alt="image" style="zoom:50%;"/>
+<img src="/assets/img/posts/2020/12/16/1.jpg" alt="image" style="zoom:50%;"/>
 
 问题其实和我们 scope 的表示有点关系，考虑如下代码：
 
@@ -30,7 +30,7 @@ var a = "global";
 
 我们预期的结果是两个 `f()` 的调用都打印 "global" ，然而事与愿违。以下分别为两次调用时对应的 environment chain ：
 
-<img src="2.jpg" alt="image" style="zoom:50%;"/>
+<img src="/assets/img/posts/2020/12/16/2.jpg" alt="image" style="zoom:50%;"/>
 
 第二次 `f()` 调用对名字 `a` 的解析，在经过 Block Environment 时就已经被截获了，这就是万恶之源。
 
@@ -83,7 +83,7 @@ class Environment {
 
 忽略 block 的外层环境，对于 4 个点，我们的 Environment 分别如下：
 
-<img src="3.jpg" alt="image" style="zoom:50%;"/>
+<img src="/assets/img/posts/2020/12/16/3.jpg" alt="image" style="zoom:50%;"/>
 
 简单来说，[1] 处看不到任何 binding，[2] 可以看到 `a` ，[3] 可以看到 `a` `b`，[4] 可以看到 `a` `b` `c`。
 

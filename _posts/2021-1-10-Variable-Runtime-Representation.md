@@ -8,7 +8,7 @@ categories: [Compiler, VM]
 
 名字有点不知所以，先说下本文大致的背景和需求。类似 Python 这样的解释器大致分为两块，编译时和解释运行时。即先把源码编译成字节码，最后逐条解释运行字节码。简单来说，我们有 compiler（scanner+parser）和 VM（字节码解释器）。
 
-<img src="3.jpg" alt="index" style="zoom:50%;" />
+<img src="/assets/img/posts/2021/01/10/3.jpg" alt="index" style="zoom:50%;" />
 
 另外这里的 VM 是栈式虚拟机，即解释运行字节码时，会有一个辅助栈来保留一些操作数和中间结果。比如对于 1 + 2 * 3 ，字节码大概是：
 
@@ -172,11 +172,11 @@ var a = 1;
 
 当编译进行到 [1] 处时，locals 数组会有三个变量，对应的下标分别是 0 1 2。我们的哈希表中存放的映射是：
 
-![hash table](/assets/img/posts/1.jpg)
+![hash table](/assets/img/posts/2021/01/10/1.jpg)
 
 来到 [2] 处，`var a = 3` 定义已经被清除，哈希表中的映射 "a" 会被调整为：
 
-![hash table](/assets/img/posts/2.jpg)
+![hash table](/assets/img/posts/2021/01/10/2.jpg)
 
 借此，我们就完成了对 *scope* 的建模。在 [1] 处读写变量通过哈希表获得的下标是2，对应的为最内层定义 `var a = 3` 。
 

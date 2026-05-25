@@ -93,4 +93,4 @@ struct State {
 
 Why should we track the branches we already chose? Because the PHI node is far from the condition(branch instruction)... We will select only one incoming value in a PHI node if we want to implement MOP. So we need to track the true/false branch history we selected before, then we can make sure which incoming value we should take in a PHI node in a "path"(one execution). To represent branch history, here we use a stack which fits the forking(branch node) and merging(phi node) semantics.
 
-<img src="1.png" alt="图呢..." style="zoom:50%;"/>
+<img src="/assets/img/posts/2021/11/08/1.png" alt="图呢..." style="zoom:50%;"/>

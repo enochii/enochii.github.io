@@ -13,7 +13,7 @@ function loadAllPostData(callback) {
   blog.ajax(
     {
       timeout: 20000,
-      url: blog.baseurl + '/static/xml/search.xml'
+      url: blog.baseurl + '/assets/xml/search.xml'
     },
     function (data) {
       localStorage.db = data
