@@ -58,21 +58,21 @@
       "title": "Better Not Together: Staged Solving for Context-Free Language Reachability",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Jie Lu, Lian Li",
       "full_venue": "The 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis",
-      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/issta24-stg.pdf"}]
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/assets/files/publications/issta24-stg.pdf"}]
     },
     {
       "venue": "TSE'24",
       "title": "PEARL: A Multi-Derivation Approach to Efficient CFL-Reachability Solving",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "Transactions on Software Engineering, 2024",
-      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/tse24-multi-derivation-preprint.pdf"}]
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/assets/files/publications/tse24-multi-derivation-preprint.pdf"}]
     },
     {
       "venue": "OOPSLA'24",
       "title": "Boosting the Performance of Alias-Aware IFDS Analysis with CFL-based Environment Transformers",
       "authors": "Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "2024 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
-      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/oopsla24-IDEDroid.pdf"}]
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/assets/files/publications/oopsla24-IDEDroid.pdf"}]
     },
     {
       "venue": "CCS'24",
@@ -86,7 +86,7 @@
       "title": "AutoWeb: Automatically Inferring Web Framework Semantics via Configuration Mutation",
       "authors": "Haining Meng, Haofeng Li, Jie Lu, <b>Chenghang Shi</b>, Liqing Cao, Lian Li, Lin Gao",
       "full_venue": "The 28th International Conference on Engineering of Complex Computer Systems",
-      "links": [{"name": "pdf", "url": "https://enochii.github.io/publications/iceccs24-AutoWeb.pdf"}]
+      "links": [{"name": "pdf", "url": "https://enochii.github.io/assets/files/publications/iceccs24-AutoWeb.pdf"}]
     }
   ],
   "2023": [
@@ -96,8 +96,8 @@
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "The 38th IEEE/ACM International Conference on Automated Software Engineering",
       "links": [
-        {"name": "pdf", "url": "https://enochii.github.io/publications/ase23-pearl.pdf"},
-        {"name": "slides", "url": "https://enochii.github.io/slides/ase23-slides.pdf"}
+        {"name": "pdf", "url": "https://enochii.github.io/assets/files/publications/ase23-pearl.pdf"},
+        {"name": "slides", "url": "https://enochii.github.io/assets/files/slides/ase23-slides.pdf"}
       ]
     }
   ]
