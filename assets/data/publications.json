@@ -1,6 +1,20 @@
 {
   "2026": [
     {
+      "venue": "ASE'26",
+      "title": "Tracing the Invisible: Semantic Message Flow Discovery via Data Contracts in Real-World Distributed Systems",
+      "authors": "Youlong Chen, Jie Lu, Mingtao Huang, Chenghang Shi, Yongheng Huang, Haofeng Li, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
+      "full_venue": "The 41st IEEE/ACM International Conference on Automated Software Engineering",
+      "links": []
+    },
+    {
+      "venue": "CCS'26",
+      "title": "THESEUS: Smart Web Crawling via Resource-Guided Semantic Modeling",
+      "authors": "Yongheng Huang, Chenghang Shi, Wenxiao Yao, Jie Lu, Haofeng Li, Youlong Chen, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
+      "full_venue": "The 33rd ACM SIGSAC Conference on Computer and Communications Security",
+      "links": []
+    },
+    {
       "venue": "FSE'26",
       "title": "SpecWeaver: End-to-End HTTP API Specification Inference Across Multi-Layer Routing in Production Web Services",
       "authors": "Wenbo Hu, Jie Lu, Jingting Chen, Feng Li, <b>Chenghang Shi</b>, Xiaonan Shi, Jinchen Wang, Wei Huo",
