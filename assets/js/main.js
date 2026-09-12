@@ -13,13 +13,20 @@
         }
     }
 
+    // Load translated section data when the current page is Chinese.
+    function loadLocalizedJSON(name) {
+        const isChinese = document.documentElement.lang.toLowerCase().startsWith('zh');
+        const localeSuffix = isChinese ? '.zh' : '';
+        return loadJSON(`/assets/data/${name}${localeSuffix}.json`);
+    }
+
 
     // Render News
     async function renderNews() {
         const newsContainer = document.getElementById('news-container');
         if (!newsContainer) return;
 
-        const news = await loadJSON('/assets/data/news.json');
+        const news = await loadLocalizedJSON('news');
         if (!news) return;
 
         news.forEach(item => {
@@ -38,7 +45,7 @@
         const container = document.getElementById('experience-container');
         if (!container) return;
 
-        const data = await loadJSON('/assets/data/experience.json');
+        const data = await loadLocalizedJSON('experience');
         if (!data) return;
 
         data.forEach(item => {
@@ -53,7 +60,7 @@
         const container = document.getElementById('awards-container');
         if (!container) return;
 
-        const data = await loadJSON('/assets/data/awards.json');
+        const data = await loadLocalizedJSON('awards');
         if (!data) return;
 
         data.forEach(item => {
@@ -72,7 +79,7 @@
         const container = document.getElementById('service-container');
         if (!container) return;
 
-        const data = await loadJSON('/assets/data/service.json');
+        const data = await loadLocalizedJSON('service');
         if (!data) return;
 
         data.forEach(item => {
@@ -122,6 +129,7 @@
                 pubItem.innerHTML = `
                     <div class="pub-header">
                         <span class="pub-badge">${pub.venue}</span>
+                        ${pub.ccf ? `<span class="pub-ccf-badge pub-ccf-${pub.ccf.toLowerCase().replace('ccf-', '')}">${pub.ccf}</span>` : ''}
                         <div class="pub-title">${pub.title}${linksHtml}</div>
                     </div>
                     <div class="pub-authors">${pub.authors}</div>

@@ -2,6 +2,7 @@
   "2026": [
     {
       "venue": "ASE'26",
+      "ccf": "CCF-A",
       "title": "Tracing the Invisible: Semantic Message Flow Discovery via Data Contracts in Real-World Distributed Systems",
       "authors": "Youlong Chen, Jie Lu, Mingtao Huang, Chenghang Shi, Yongheng Huang, Haofeng Li, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
       "full_venue": "The 41st IEEE/ACM International Conference on Automated Software Engineering",
@@ -9,6 +10,7 @@
     },
     {
       "venue": "CCS'26",
+      "ccf": "CCF-A",
       "title": "THESEUS: Smart Web Crawling via Resource-Guided Semantic Modeling",
       "authors": "Yongheng Huang, Chenghang Shi, Wenxiao Yao, Jie Lu, Haofeng Li, Youlong Chen, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
       "full_venue": "The 33rd ACM SIGSAC Conference on Computer and Communications Security",
@@ -16,6 +18,7 @@
     },
     {
       "venue": "FSE'26",
+      "ccf": "CCF-A",
       "title": "SpecWeaver: End-to-End HTTP API Specification Inference Across Multi-Layer Routing in Production Web Services",
       "authors": "Wenbo Hu, Jie Lu, Jingting Chen, Feng Li, <b>Chenghang Shi</b>, Xiaonan Shi, Jinchen Wang, Wei Huo",
       "full_venue": "2026 ACM International Conference on the Foundations of Software Engineering",
@@ -23,6 +26,7 @@
     },
     {
       "venue": "OOPSLA'26",
+      "ccf": "CCF-A",
       "title": "Context-Free Language Reachability via Efficient Relation Chaining",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Jie Lu, and Lian Li",
       "full_venue": "2026 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
@@ -30,6 +34,7 @@
     },
     {
       "venue": "ICSE'26",
+      "ccf": "CCF-A",
       "title": "No Shot in the Dark: Efficient Context-Free Language Reachability via Context-Aware Tabulation",
       "authors": "<b>Chenghang Shi</b>, Lian Li",
       "full_venue": "The 48th IEEE/ACM International Conference on Software Engineering",
@@ -39,6 +44,7 @@
   "2025": [
     {
       "venue": "OOPSLA'25",
+      "ccf": "CCF-A",
       "title": "Fast Client-Driven CFL-Reachability via Regularization-Based Graph Simplification",
       "authors": "<b>Chenghang Shi</b>, Dongjie He, Haofeng Li, Jie Lu, Lian Li, and Jingling Xue",
       "full_venue": "2025 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
@@ -46,6 +52,7 @@
     },
     {
       "venue": "USENIX Security'25",
+      "ccf": "CCF-A",
       "title": "ZIPPER: Static Taint Analysis for PHP Applications with Precision and Efficiency",
       "authors": "Xinyi Wang, Yeting Li, Jie Lu, Shizhe Cui, <b>Chenghang Shi</b>, Qin Mai, Yunpei Zhang, Yang Xiao, Feng Li, Wei Huo",
       "full_venue": "The 34th USENIX Security Symposium",
@@ -53,6 +60,7 @@
     },
     {
       "venue": "FSE'25",
+      "ccf": "CCF-A",
       "title": "VulPA: Detecting Semantically Recurring Vulnerabilities with Multi-Object Typestate Analysis",
       "authors": "Liqing Cao, Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Haining Meng, Lian Li and Jingling Xue",
       "full_venue": "The ACM International Conference on the Foundations of Software Engineering",
@@ -60,6 +68,7 @@
     },
     {
       "venue": "ICSE'25",
+      "ccf": "CCF-A",
       "title": "Module-Aware Context Sensitive Pointer Analysis",
       "authors": "Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Zixuan Zhao",
       "full_venue": "The 47th IEEE/ACM International Conference on Software Engineering",
@@ -69,6 +78,7 @@
   "2024": [
     {
       "venue": "ISSTA'24",
+      "ccf": "CCF-A",
       "title": "Better Not Together: Staged Solving for Context-Free Language Reachability",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Jie Lu, Lian Li",
       "full_venue": "The 33rd ACM SIGSOFT International Symposium on Software Testing and Analysis",
@@ -76,6 +86,7 @@
     },
     {
       "venue": "TSE'24",
+      "ccf": "CCF-A",
       "title": "PEARL: A Multi-Derivation Approach to Efficient CFL-Reachability Solving",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "Transactions on Software Engineering, 2024",
@@ -83,6 +94,7 @@
     },
     {
       "venue": "OOPSLA'24",
+      "ccf": "CCF-A",
       "title": "Boosting the Performance of Alias-Aware IFDS Analysis with CFL-based Environment Transformers",
       "authors": "Haofeng Li, <b>Chenghang Shi</b>, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "2024 ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications",
@@ -90,6 +102,7 @@
     },
     {
       "venue": "CCS'24",
+      "ccf": "CCF-A",
       "title": "Detecting Broken Object-Level Authorization Vulnerabilities in Database-Backed Applications",
       "authors": "Yongheng Huang, <b>Chenghang Shi</b>, Jie Lu, Haofeng Li, Haining Meng, Lian Li",
       "full_venue": "The 31st ACM SIGSAC Conference on Computer and Communications Security",
@@ -97,6 +110,7 @@
     },
     {
       "venue": "ICECCS'24",
+      "ccf": "CCF-C",
       "title": "AutoWeb: Automatically Inferring Web Framework Semantics via Configuration Mutation",
       "authors": "Haining Meng, Haofeng Li, Jie Lu, <b>Chenghang Shi</b>, Liqing Cao, Lian Li, Lin Gao",
       "full_venue": "The 28th International Conference on Engineering of Complex Computer Systems",
@@ -106,6 +120,7 @@
   "2023": [
     {
       "venue": "ASE'23",
+      "ccf": "CCF-A",
       "title": "Two Birds with One Stone: Multi-Derivation for Fast Context-Free Language Reachability Analysis",
       "authors": "<b>Chenghang Shi</b>, Haofeng Li, Yulei Sui, Jie Lu, Lian Li, Jingling Xue",
       "full_venue": "The 38th IEEE/ACM International Conference on Automated Software Engineering",
