@@ -1,10 +1,14 @@
 [
   {
-    "role": "协助审稿",
-    "venue": "ISSTA'24, ASE'23"
-  },
-  {
     "role": "程序委员会",
     "venue": "USENIX Security'27"
+  },
+  {
+    "role": "审稿人",
+    "venue": "TOSEM"
+  },
+  {
+    "role": "协助审稿",
+    "venue": "ISSTA'24, ASE'23"
   }
 ]

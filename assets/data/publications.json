@@ -1,10 +1,20 @@
 {
+  "2027": [
+    {
+      "venue": "S&P'27",
+      "ccf": "CCF-A",
+      "title": "Level By Level: Practical Indirect Call Resolution for Stripped Binaries via On-Demand Multi-Layer Offset Analysis",
+      "authors": "Jian Wang, <b>Chenghang Shi</b>, Feng Li, Lanlan Zhan, Jinchen Wang, Jie Lu, Yiming Liu, Jianhua Zhou, Wenbo Hu, Yeting Li, Wei Huo",
+      "full_venue": "IEEE Symposium on Security and Privacy",
+      "links": []
+    }
+  ],
   "2026": [
     {
       "venue": "ASE'26",
       "ccf": "CCF-A",
       "title": "Tracing the Invisible: Semantic Message Flow Discovery via Data Contracts in Real-World Distributed Systems",
-      "authors": "Youlong Chen, Jie Lu, Mingtao Huang, Chenghang Shi, Yongheng Huang, Haofeng Li, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
+      "authors": "Youlong Chen, Jie Lu, Mingtao Huang, <b>Chenghang Shi</b>, Yongheng Huang, Haofeng Li, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
       "full_venue": "The 41st IEEE/ACM International Conference on Automated Software Engineering",
       "links": []
     },
@@ -12,7 +22,7 @@
       "venue": "CCS'26",
       "ccf": "CCF-A",
       "title": "THESEUS: Smart Web Crawling via Resource-Guided Semantic Modeling",
-      "authors": "Yongheng Huang, Chenghang Shi, Wenxiao Yao, Jie Lu, Haofeng Li, Youlong Chen, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
+      "authors": "Yongheng Huang, <b>Chenghang Shi</b>, Wenxiao Yao, Jie Lu, Haofeng Li, Youlong Chen, Dong Liu, Mengna Ma, Yong Liu, Qinfen Hao, Lian Li",
       "full_venue": "The 33rd ACM SIGSAC Conference on Computer and Communications Security",
       "links": []
     },
