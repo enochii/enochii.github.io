@@ -29,9 +29,14 @@
         const news = await loadLocalizedJSON('news');
         if (!news) return;
 
-        news.forEach(item => {
+        const sortedNews = [...news].sort((a, b) => Number(Boolean(b.pinned)) - Number(Boolean(a.pinned)));
+
+        sortedNews.forEach(item => {
             const newsItem = document.createElement('div');
             newsItem.className = 'news-item';
+            if (item.pinned) {
+                newsItem.classList.add('news-item-pinned');
+            }
             newsItem.innerHTML = `
                 <span class="news-date">${item.date}</span>
                 <span class="news-text">${item.text}</span>

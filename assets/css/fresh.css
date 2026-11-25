@@ -179,6 +179,18 @@ a:hover {
     gap: 10px;
 }
 
+.news-item-pinned {
+    padding: 8px 10px;
+    border-left: 3px solid var(--accent-color);
+    border-radius: 4px;
+    background: #fff8e8;
+}
+
+.news-item-pinned .news-date {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
 .news-date {
     color: var(--primary-color);
     font-weight: 500;

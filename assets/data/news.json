@@ -1,4 +1,9 @@
 [
+  {
+    "date": "Pinned",
+    "text": "Please consider submitting papers to USENIX Security'27, where Chenghang serves on the program committee.",
+    "pinned": true
+  },
   {"date": "2026-09", "text": "MLOA accepted to S&P'27!"},
   {"date": "2026-06", "text": "Hermes accepted to ASE'26! Congrats to Youlong~"},
   {"date": "2026-04", "text": "THESUS accepted to CCS'26! Congrats to Yongheng~"},
